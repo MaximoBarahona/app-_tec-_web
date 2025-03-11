@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Web</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #054975;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label, input, select, textarea {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        button {
+            background: blue;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Formulario de Registro</h2>
+        <form id="myForm">
+            <label>Nombre:</label>
+            <input type="text" id="nombre" required>
+            
+            <label>Apellido:</label>
+            <input type="text" id="apellido" required>
+            
+            <label>Edad:</label>
+            <input type="number" id="edad" required>
+            
+            <label>Fecha de Nacimiento:</label>
+            <input type="date" id="fecha" required>
+            
+            <label>Género:</label>
+            <input type="radio" name="genero" value="Masculino"> Masculino
+            <input type="radio" name="genero" value="Femenino"> Femenino
+            <input type="radio" name="genero" value="Otro"> Otro
+            
+            <label>País:</label>
+            <select id="pais">
+                <option value="Chile">Chile</option>
+                <option value="Argentina">Argentina</option>
+                <option value="Perú">Perú</option>
+            </select>
+            
+            <label>Comentarios:</label>
+            <textarea id="comentarios" rows="4"></textarea>
+            
+            <label>
+                <input type="checkbox" id="terminos"> Acepto los términos y condiciones
+            </label>
+            
+            <button type="button" onclick="validarFormulario()">Enviar</button>
+        </form>
+    </div>
+
+    <script>
+        function validarFormulario() {
+            let nombre = document.getElementById("nombre").value;
+            let apellido = document.getElementById("apellido").value;
+            let edad = document.getElementById("edad").value;
+            let fecha = document.getElementById("fecha").value;
+            let pais = document.getElementById("pais").value;
+            let comentarios = document.getElementById("comentarios").value;
+            let terminos = document.getElementById("terminos").checked;
+            let generoSeleccionado = document.querySelector('input[name="genero"]:checked');
+
+            if (!nombre || !apellido || !edad || !fecha || !generoSeleccionado || !terminos) {
+                alert("Por favor, complete todos los campos y acepte los términos.");
+                return;
+            }
+
+            alert(`Formulario enviado:\nNombre: ${nombre} ${apellido}\nEdad: ${edad}\nFecha de Nacimiento: ${fecha}\nGénero: ${generoSeleccionado.value}\nPaís: ${pais}\nComentarios: ${comentarios}`);
+        }
+    </script>
+</body>
+</html>
